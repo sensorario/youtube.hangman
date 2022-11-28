@@ -1,11 +1,11 @@
 <?php
 
-class HangmanTest
+class Hangman
 {
     private string $word;
     private string $solution;
     private int $missingLetters;
-    private array $wrongAttempts;
+    private array $wrongAttempts = [];
     private $attempts = -1;
 
     public function setWord(

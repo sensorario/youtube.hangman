@@ -52,31 +52,31 @@ class HangmanTest extends TestCase
         $this->hangman->guess('a');
         $this->hangman->guess('n');
         $this->hangman->guess('g');
-        $this->asswerSame(false, $this->hangman->isWordRevealed());
+        $this->assertSame(false, $this->hangman->isWordRevealed());
 
         $this->hangman->guess('m');
-        $this->asswerSame(true, $this->hangman->isWordRevealed());
+        $this->assertSame(true, $this->hangman->isWordRevealed());
     }
 
     /** @test */
-    public function shouldDetectWheneverWordIsRevealed()
+    public function shouldDisplayWrongAttempts()
     {
         $this->hangman->setWord('hangman');
-        $this->asswerSame('', $this->hangman->wrongAttempts());
+        $this->assertSame('', $this->hangman->wrongAttempts());
 
         $this->hangman->guess('x');
         $this->hangman->guess('p');
-        $this->asswerSame('x,p', $this->hangman->wrongAttempts());
+        $this->assertSame('x,p', $this->hangman->wrongAttempts());
     }
 
     /** @test */
     public function shouldAllowInfiniteNumberOfWrongAttemptsByDefault()
     {
         $this->hangman->setWord('hangman');
-        $this->asswerSame('infinite', $this->hangman->wrongAttemptsRemaining());
+        $this->assertSame('infinite', $this->hangman->wrongAttemptsRemaining());
 
         $this->hangman->guess('x');
-        $this->asswerSame('infinite', $this->hangman->wrongAttemptsRemaining());
+        $this->assertSame('infinite', $this->hangman->wrongAttemptsRemaining());
     }
 
     /** @test */
@@ -84,9 +84,9 @@ class HangmanTest extends TestCase
     {
         $this->hangman->setWord('hangman');
         $this->hangman->setNumberOfWrongAttempts(42);
-        $this->asswerSame(42, $this->hangman->wrongAttemptsRemaining());
+        $this->assertSame(42, $this->hangman->wrongAttemptsRemaining());
 
         $this->hangman->guess('x');
-        $this->asswerSame(41, $this->hangman->wrongAttemptsRemaining());
+        $this->assertSame(41, $this->hangman->wrongAttemptsRemaining());
     }
 }
